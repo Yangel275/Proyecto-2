@@ -1,0 +1,19 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package Objetos;
+
+/**
+ *
+ * @author yangel
+ */
+
+
+
+public class Habitaciones {
+    int num_hab;
+    String tipo_hab;
+    int piso;
+    
+}
