@@ -10,10 +10,12 @@ import java.util.Date;
  *
  * @author yangel
  */
-public class Reservas {
+
+// Datos de una reservación 
+public class Reservación {
     String Cédula;
-    String Pri_Nombre;
-    String Seg_Nombre;
+    String Nombre;
+    String Appellido;
     String email; // Reconocer que es un email hacerlo mediante el "@" y el "." (Despues de que se consiga "@" busca que después haya un punto)
     String Genero;
     String tipo_hab;

@@ -8,6 +8,6 @@ package Objetos;
  *
  * @author yangel
  */
-public class Histórico {
+public class Historiales {
     
 }

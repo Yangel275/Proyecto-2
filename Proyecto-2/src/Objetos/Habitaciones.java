@@ -8,12 +8,6 @@ package Objetos;
  *
  * @author yangel
  */
-
-
-
 public class Habitaciones {
-    int num_hab;
-    String tipo_hab;
-    int piso;
     
 }
