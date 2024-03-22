@@ -8,20 +8,20 @@ package Objetos;
  *
  * @author yangel
  */
-public class Datos {
-    private static  simulacion = new La_simulacion();
+public class Base_Datos {
+    private static  Datos datos = new Datos();
 
     /**
      * @return the simulacion
      */
-    public static La_simulacion getSimulacion() {
-        return simulacion;
+    public static Datos getDatos() {
+        return datos;
     }
 
     /**
-     * @param simulacion1
+     * @param datos1
      */
-    public static void setSimulacion(La_simulacion simulacion1) {
-        simulacion = simulacion1;
+    public static void setDatos(Datos datos1) {
+        datos = datos1;
     }
 }

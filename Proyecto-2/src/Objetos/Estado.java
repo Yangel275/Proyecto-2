@@ -11,6 +11,14 @@ import java.util.Date;
  * @author yangel
  */
 public class Estado {
+    
+    private int num_hab;
+    private String Nombre;
+    private String apellido;
+    private String email;
+    private String genero;
+    private String celular;
+    private Date Llegada;
 
     /**
      * @return the num_hab
@@ -109,11 +117,5 @@ public class Estado {
     public void setLlegada(Date Llegada) {
         this.Llegada = Llegada;
     }
-    private int num_hab;
-    private String Nombre;
-    private String apellido;
-    private String email;
-    private String genero;
-    private String celular;
-    private Date Llegada;
+    
 }
