@@ -13,88 +13,93 @@ import java.util.Date;
 import java.time.LocalDate;
 
 public class Historial {
-<<<<<<< HEAD
-    String Cédula;
-    String Nombre;
-    String Appellido;
-    String email; // Reconocer que es un email hacerlo mediante el "@" y el "." (Despues de que se consiga "@" busca que después haya un punto)
-    String Genero;
-    Date Llegada;
-    int num_hab;
-=======
-    private String ci;
-    private String primerNombre;
-    private String apellido;
-    private String email;
-    private String genero;
-    private LocalDate llegada;
-    private int numHab;
+    private String Cédula;
+    private String Nombre;
+    private String Apellido;
+    private String Email; // Reconocer que es un email hacerlo mediante el "@" y el "." (Despues de que se consiga "@" busca que después haya un punto)
+    private String Genero;
+    private Date Llegada;
+    private int num_hab;
+
     
-    // Constructor, getters y setters
-    public Historial(String ci, String primerNombre, String apellido, String email, String genero, LocalDate Llegada, int numHab){
-        this.ci = ci;
-        this.primerNombre = primerNombre;
-        this.apellido = apellido;
-        this.email = email;
-        this.genero = genero;
-        this.llegada = Llegada;
-        this.numHab = numHab;
-    }
-    public String getCi() {
-        return ci;
+
+    //Cédula
+    public String getCédula() {
+        return Cédula;
     }
 
-    public void setCi(String ci) {
-        this.ci = ci;
+    public void setCédula(String Cédula) {
+        this.Cédula = Cédula;
     }
 
-    public String getPrimerNombre() {
-        return primerNombre;
+    
+
+    //Nombre
+    public String getNombre() {
+        return Nombre;
     }
 
-    public void setPrimerNombre(String primerNombre) {
-        this.primerNombre = primerNombre;
+    public void setNombre(String Nombre) {
+        this.Nombre = Nombre;
     }
 
+    
+
+    //Apellido
     public String getApellido() {
-        return apellido;
+        return Apellido;
     }
 
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
+    public void setApellido(String Apellido) {
+        this.Apellido = Apellido;
     }
 
+    
+
+    //Email
     public String getEmail() {
-        return email;
+        return Email;
     }
 
     public void setEmail(String email) {
-        this.email = email;
+        this.Email = email;
     }
 
+    
+
+    //Gérnero
     public String getGenero() {
-        return genero;
+        return Genero;
     }
 
-    public void setGenero(String genero) {
-        this.genero = genero;
+    public void setGenero(String Genero) {
+        this.Genero = Genero;
     }
 
-    public LocalDate getLlegada() {
-        return llegada;
+    
+
+    // Fecha de Llegada
+    public Date getLlegada() {
+        return Llegada;
     }
 
-    public void setLlegada(LocalDate llegada) {
-        this.llegada = llegada;
+    public void setLlegada(Date Llegada) {
+        this.Llegada = Llegada;
     }
 
-    public int getNumHab() {
-        return numHab;
-    }
+    
 
-    public void setNumHab(int numHab) {
-        this.numHab = numHab;
+    //Número de la Habitación
+    public int getnum_hab() {
+        return num_hab;
     }
->>>>>>> 2c106c16bc3fbb6749303b04a263c6df753d32d1
+    
+    public void setHab(int num_hab) {
+        this.num_hab = num_hab;
+    }
+    
+
+    
+    
+    
 }
-

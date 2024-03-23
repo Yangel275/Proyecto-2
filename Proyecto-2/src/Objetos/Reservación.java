@@ -14,100 +14,128 @@ import java.time.LocalDate;
 import java.time.LocalDate;
 
 public class Reservación {
-    private String ci;
-    private String primerNombre;
-    private String apellido;
-    private String email;
-    private String genero;
-    private String tipoHab;
-    private String celular;
-    private LocalDate llegada;
-    private LocalDate salida;
+    private int Ci;
+    private String Nombre;
+    private String Apellido;
+    private String Email;
+    private String Género;
+    private String TipoHab;
+    private String Celular;
+    private LocalDate Llegada;
+    private LocalDate Salida;
     
     // Constructor
-    public Reservación(String ci, String primerNombre, String apellido, String email, String genero, String tipoHab, String celular, LocalDate llegada, LocalDate salida) {
-        this.ci = ci;
-        this.primerNombre = primerNombre;
-        this.apellido = apellido;
-        this.email = email;
-        this.genero = genero;
-        this.tipoHab = tipoHab;
-        this.celular = celular;
-        this.llegada = llegada;
-        this.salida = salida;
-    }
-    // getters y setters
-
-    public String getCi() {
-        return ci;
+    public Reservación(int Ci, String Nombre, String Apellido, String Email, String Genero, String TipoHab, String Celular, LocalDate Llegada, LocalDate Salida) {
+        this.Ci = Ci;
+        this.Nombre = Nombre;
+        this.Apellido = Apellido;
+        this.Email = Email;
+        this.Género = Género;
+        this.TipoHab = TipoHab;
+        this.Celular = Celular;
+        this.Llegada = Llegada;
+        this.Salida = Salida;
     }
 
-    public void setCi(String ci) {
-        this.ci = ci;
+    //Cédula
+    public int getCi() {
+        return Ci;
     }
 
-    public String getPrimerNombre() {
-        return primerNombre;
+    public void setCi(int Ci) {
+        this.Ci = Ci;
+    }
+    
+
+
+    //Nombre
+    public String getNombre() {
+        return Nombre;
     }
 
-    public void setPrimerNombre(String primerNombre) {
-        this.primerNombre = primerNombre;
+    public void setNombre(String Nombre) {
+        this.Nombre = Nombre;
     }
 
+
+
+    //Apellido
     public String getApellido() {
-        return apellido;
+        return Apellido;
     }
 
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
+    public void setApellido(String Apellido) {
+        this.Apellido = Apellido;
     }
-
+    
+    
+    
+    //Email
     public String getEmail() {
-        return email;
+        return Email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setEmail(String Email) {
+        this.Email = Email;
+    }
+    
+    
+
+    //Género
+    public String getGénero() {
+        return Género;
     }
 
-    public String getGenero() {
-        return genero;
+    
+    public void setGénero(String Género) {
+        this.Género = Género;
     }
 
-    public void setGenero(String genero) {
-        this.genero = genero;
-    }
 
+
+    //Tipo de habitación
     public String getTipoHab() {
-        return tipoHab;
+        return TipoHab;
     }
 
-    public void setTipoHab(String tipoHab) {
-        this.tipoHab = tipoHab;
+    public void setTipoHab(String TipoHab) {
+        this.TipoHab = TipoHab;
     }
 
+    
+    
+    //Número Celular
     public String getCelular() {
-        return celular;
+        return Celular;
     }
 
-    public void setCelular(String celular) {
-        this.celular = celular;
+    public void setCelular(String Celular) {
+        this.Celular = Celular;
     }
 
+    
+
+    //Fecha de llegada
     public LocalDate getLlegada() {
-        return llegada;
+        return Llegada;
     }
 
-    public void setLlegada(LocalDate llegada) {
-        this.llegada = llegada;
+    public void setLlegada(LocalDate Llegada) {
+        this.Llegada = Llegada;
     }
 
+    
+
+    //Fecha de Salida
     public LocalDate getSalida() {
-        return salida;
+        return Salida;
     }
 
-    public void setSalida(LocalDate salida) {
-        this.salida = salida;
+    public void setSalida(LocalDate Salida) {
+        this.Salida = Salida;
     }
+    
+    
+    
 }
 
