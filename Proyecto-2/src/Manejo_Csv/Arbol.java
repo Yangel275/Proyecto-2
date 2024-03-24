@@ -9,22 +9,18 @@ package Manejo_Csv;
  * @author yangel
  */
 public class Arbol {
-  Hoja inicial;
-  
-  public Arbol(Hoja inicial){
-      this.inicial = inicial;
-  }
+  private Hoja inicial;
   
   public void insertar (int valor){
-      if(this.inicial == null){
-        this.inicial = new Hoja(valor);   
+      if(this.getInicial() == null){
+          this.setInicial(new Hoja(valor));   
       }else{
-          this.inicial.insertar(valor);
+          this.getInicial().insertar(valor);
       }
   }
   
   public void disparadorInorden(){
-      this.inorden(this.inicial);
+      this.inorden(this.getInicial());
   }
   
   public void inorden(Hoja nodo){
@@ -36,5 +32,19 @@ public class Arbol {
           inorden(nodo.getDer());
       }
   }
+
+    /**
+     * @return the inicial
+     */
+    public Hoja getInicial() {
+        return inicial;
+    }
+
+    /**
+     * @param inicial the inicial to set
+     */
+    public void setInicial(Hoja inicial) {
+        this.inicial = inicial;
+    }
   
 }
