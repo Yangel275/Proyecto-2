@@ -14,7 +14,8 @@ public class Habitación {
     private int numHab;
     private String tipoHab;
     private int piso;
-    private Historial[] historiales;
+    private int Tamaño;
+    private Historial First;
     private Habitación ant_hab;
     private Habitación sig_hab;
     
@@ -23,29 +24,61 @@ public class Habitación {
         this.numHab = numHab;
         this.tipoHab = tipoHab;
         this.piso = piso;
-        this.historiales = null;
+        this.Tamaño = 0;
+        this.First = null;
         this.ant_hab = null;
         this.sig_hab = null;
     }
     
     //Agregar nueva información al historial de la habitación
     public void agg_hist(Historial nuevo){
-        if(this.historiales.length == 0 ){
-            this.historiales = new Historial[1];
-            this.historiales[0] = nuevo;
+        if(this.getTamaño() == 0){
+            this.setFirst(nuevo);
+            this.setTamaño(this.getTamaño() + 1);
         }else{
-            int indice = this.historiales.length;
-            Historial[] nuevo_historial = new Historial[indice];
-            for(int i = 0; i < this.historiales.length; i++){
-                nuevo_historial[i] = this.historiales[i];    
-            }
-            nuevo_historial[indice - 1] = nuevo;
-            this.historiales = nuevo_historial;
+            boolean similitud = false;
+            Historial aux = this.getFirst();
+            for(int i = 0;  i < this.getTamaño(); i++){
+                if(aux == null){
+                    break;
+                }
+                if(nuevo.equals(aux)){
+                    similitud = true;
+                        break;
+                }
+                aux = aux.getNext();
+            }    
+            if(similitud == true){
+                String error = "\n\n                 Ya existe este Usuario";
+            }else{
+                aux = this.getFirst();
+                for(int i = 0; i < this.getTamaño()-1; i++){
+                    aux = aux.getNext();
+                }
+                aux.setNext(nuevo);
+                this.setTamaño(1+ this.getTamaño());  
+            }            
         }
     }
     
-
-
+    // Insertar las hojas a las que va estar conectado
+    public void insertar(Habitación nuevo){
+        if(nuevo.getNumHab() < this.numHab){
+            //Insertar habitación conectada en forma de su hoja en el lado izquierdo
+            if(this.ant_hab == null){
+                this.ant_hab = nuevo;
+            }else{
+                this.ant_hab.insertar(nuevo);    
+            }
+        }else{
+            //Insertar habitación conectada en forma de su hoja en el lado izquierdo
+            if(this.sig_hab == null){
+                this.sig_hab = nuevo;
+            }else{
+                this.sig_hab.insertar(nuevo);    
+            }
+        }
+    }
     
     
     
@@ -83,37 +116,37 @@ public class Habitación {
 
     
 
-    //Historial de la habitación
-    public Historial[] getHistoriales() {
-        return historiales;
+    // Indicar tamaño del Historial
+    public int getTamaño() {
+        return Tamaño;
     }
 
-    public void setHistoriales(Historial[] historiales) {
-        this.historiales = historiales;
+    public void setTamaño(int Tamaño) {
+        this.Tamaño = Tamaño;
     }
+
     
+    
+    //Indicar el primer elemento del historial
+    public Historial getFirst() {
+        return First;
+    }
 
+    public void setFirst(Historial First) {
+        this.First = First;
+    }
 
-    // Anterior habitación
+    
+    
+    //Cambiar a la información Anterior de la habitación
     public Habitación getAnt_hab() {
         return ant_hab;
     }
-
-    public void setAnt_hab(Habitación ant_hab) {
-        this.ant_hab = ant_hab;
-    }
-
     
 
-    //Siguiente Habitación
+    //Cambiar a la información de la Siguiente habitación
     public Habitación getSig_hab() {
         return sig_hab;
-    }
-
-    public void setSig_hab(Habitación sig_hab) {
-        this.sig_hab = sig_hab;
-    }
-    
-    
+    }    
     
 }

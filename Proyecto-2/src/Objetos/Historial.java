@@ -20,9 +20,23 @@ public class Historial {
     private String Genero;
     private Date Llegada;
     private int num_hab;
+    private Historial Next;
 
+    public Historial(String Cédula, String Nombre, String Apellido, String Email, String Genero, Date Llegada, int num_hab) {
+        this.Cédula = Cédula;
+        this.Nombre = Nombre;
+        this.Apellido = Apellido;
+        this.Email = Email;
+        this.Genero = Genero;
+        this.Llegada = Llegada;
+        this.num_hab = num_hab;
+        this.Next = null;
+    }
     
-
+    
+    
+    
+    
     //Cédula
     public String getCédula() {
         return Cédula;
@@ -97,9 +111,19 @@ public class Historial {
     public void setHab(int num_hab) {
         this.num_hab = num_hab;
     }
-    
 
     
+
+    //Obtener siguiente Lista Enlazada
+    public Historial getNext() {
+        return Next;
+    }
+
+    public void setNext(Historial Next) {
+        this.Next = Next;
+    }
+
     
+
     
 }
