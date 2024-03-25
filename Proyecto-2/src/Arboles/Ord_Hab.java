@@ -56,10 +56,8 @@ public class Ord_Hab {
         }
         Ord_Hab arreglo = new Ord_Hab(nuevo);
         
-        for(int h = 0; h < nuevo.length; h++){
-            System.out.println(nuevo[h].getNumHab());
-        }
         nuevo = arreglo.ordenar();
+        
         return nuevo;
     }
     

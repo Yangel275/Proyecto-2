@@ -74,7 +74,6 @@ public class Archivos {
         
         nueva = orden.men_may();
         
-        
         Habitaciones arbol = new Habitaciones();
         
         for (int i = 0; i < nueva.length; i++) {
@@ -84,6 +83,8 @@ public class Archivos {
         
         arbol.lim_may(arbol.getInicial());
         arbol.lim_men(arbol.getInicial());
+        
+        
         
         
             
@@ -99,7 +100,6 @@ public class Archivos {
         nuevo.Down_Hab();
         Habitaciones arbol = new Habitaciones();
         
-        
         File f = new File("./Booking_hotel - habitaciones.csv");
         try(FileWriter fw = new FileWriter(f);){
             fw.write("num_hab,tipo_hab,piso\n");
@@ -110,6 +110,7 @@ public class Archivos {
         }catch(Exception e){
             System.out.println("Se a producido un error");
         }
+        
     }
      
 }
