@@ -18,7 +18,7 @@ public class GestorCSV {
         String linea;
 
         try {
-            BufferedReader br = new BufferedReader(new FileReader("Booking hotel - estado.csv"));
+            BufferedReader br = new BufferedReader(new FileReader("Booking_hotel - estado.csv"));
             // Saltarse el encabezado si existe
             br.readLine();
             while ((linea = br.readLine()) != null) {
