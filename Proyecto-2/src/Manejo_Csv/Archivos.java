@@ -71,7 +71,9 @@ public class Archivos {
         }
         
         Ord_Hab orden = new Ord_Hab(nueva) ;
-        nueva = orden.ordenar();
+        
+        nueva = orden.men_may();
+        
         
         Habitaciones arbol = new Habitaciones();
         
@@ -97,9 +99,8 @@ public class Archivos {
         nuevo.Down_Hab();
         Habitaciones arbol = new Habitaciones();
         
-        System.out.println(arbol.getInicial().toCSV());
-        System.out.println(arbol.disparador_busqueda(144).toCSV());
-        File f = new File("./Proyecto2 - habitaciones.csv");
+        
+        File f = new File("./Booking_hotel - habitaciones.csv");
         try(FileWriter fw = new FileWriter(f);){
             fw.write("num_hab,tipo_hab,piso\n");
             for(int i = arbol.getMenor(); i <= arbol.getMayor(); i++){

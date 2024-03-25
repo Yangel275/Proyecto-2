@@ -1,10 +1,12 @@
+package Cambios;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
 
 
-import Arboles.Orden;
+
 import Cambios.Arbol;
 
 /**
@@ -19,19 +21,24 @@ public class Prueba1 {
     public static void main(String[] args) {
         
         int[] lista = new int[8];
-        lista[0] = 1;
-        lista[1] = 2;
+        lista[0] = 8;
+        lista[1] = 1;
         lista[2] = 3;
-        lista[3] = 4;
-        lista[4] = 5;
-        lista[5] = 6;
-        lista[6] = 7;
-        lista[7] = 8;
+        lista[3] = 7;
+        lista[4] = 6;
+        lista[5] = 5;
+        lista[6] = 2;
+        lista[7] = 4;
         
         
         
         Orden prueba = new Orden(lista);
-        int[] nuevo = prueba.ordenar();
+        int[] nuevo = prueba.men_may();
+        for(int i = 0; i < nuevo.length; i++ ){
+            System.out.println(nuevo[i]);
+        }
+        
+        nuevo = prueba.ordenar();
         
         Arbol Arb = new Arbol();
         

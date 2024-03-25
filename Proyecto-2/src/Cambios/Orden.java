@@ -15,6 +15,47 @@ public class Orden {
         this.lista = lista;
     }
 
+    public int[] men_may(){
+        int[] lista = this.getLista();
+        int[] viejo = null;
+        int[] nuevo = null;
+        
+        int j = 0;
+        for(int i=0; i < lista.length; i++){
+            nuevo = new int[i+1];
+            j = i;
+            if(0<i){
+                for(int l = 0; l < viejo.length; l++){
+                    nuevo[l] = viejo[l];
+                }
+                nuevo[i] = lista[i];
+                
+                while(nuevo[j-1]>nuevo[j]){
+                    int numero = nuevo[j];
+                    nuevo[j] = nuevo[j-1];
+                    nuevo[j-1] = numero;
+                    
+                    if(j-1 == 0){
+                        break;
+                    }
+                    
+                    j-=1;
+                    
+                }
+                viejo = nuevo;
+                    
+                    
+            }else{
+                nuevo[i] = lista[i];
+                viejo = nuevo;
+                
+            }
+            
+        }
+        return nuevo;
+    }
+    
+    
     public int[] ordenar(){
         int[] Lista = this.getLista();
         int[] ordenada = new int[Lista.length];

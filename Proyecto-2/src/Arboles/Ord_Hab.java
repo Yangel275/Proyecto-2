@@ -17,6 +17,52 @@ public class Ord_Hab {
         this.lista = lista;
     }
 
+    public Habitación[] men_may(){
+        Habitación[] lista = this.getLista();
+        Habitación[] viejo = null;
+        Habitación[] nuevo = null;
+        
+        int j = 0;
+        for(int i=0; i < lista.length; i++){
+            nuevo = new Habitación[i+1];
+            j = i;
+            if(0<i){
+                for(int l = 0; l < viejo.length; l++){
+                    nuevo[l] = viejo[l];
+                }
+                nuevo[i] = lista[i];
+                
+                while(nuevo[j-1].getNumHab()>nuevo[j].getNumHab()){
+                    Habitación numero = nuevo[j];
+                    nuevo[j] = nuevo[j-1];
+                    nuevo[j-1] = numero;
+                    
+                    if(j-1 == 0){
+                        break;
+                    }
+                    
+                    j-=1;
+                    
+                }
+                viejo = nuevo;
+                    
+                    
+            }else{
+                nuevo[i] = lista[i];
+                viejo = nuevo;
+                
+            }
+            
+        }
+        Ord_Hab arreglo = new Ord_Hab(nuevo);
+        
+        for(int h = 0; h < nuevo.length; h++){
+            System.out.println(nuevo[h].getNumHab());
+        }
+        nuevo = arreglo.ordenar();
+        return nuevo;
+    }
+    
     public Habitación[] ordenar(){
         Habitación[] Lista = this.getLista();
         Habitación[] ordenada = new Habitación[Lista.length];
