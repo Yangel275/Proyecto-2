@@ -17,7 +17,8 @@ public class Menú extends javax.swing.JFrame {
         this.setSize(671, 265);
         this.setTitle("Menu de Hotel de la Ciudad");
         this.setLocationRelativeTo(null);
-        
+
+        initComponents();
         
 
     }
