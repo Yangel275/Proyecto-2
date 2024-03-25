@@ -5,6 +5,8 @@
 package Manejo_Csv;
 
 
+import Arboles.Habitaciones;
+import Arboles.Ord_Hab;
 import Objetos.Estado;
 import Objetos.Habitación;
 import Objetos.Historial;
@@ -18,6 +20,15 @@ import java.util.Scanner;
  */
 public class Archivos {
     
+    
+
+        /*Descargar Histótico y enlazarlo en forma de un ABB, además de concectar 
+        * con la respectiva  habitación
+        */
+
+        //Guardar Histórico ABB
+    
+    
         //Descargar Estados y enlazarlos a un Hash Table
 
         //Guardar Estados Hash Table
@@ -27,67 +38,77 @@ public class Archivos {
         //Guardar Reservaciones ABB
 
     //Descargar Habitaciones y enlazarlo en forma de un ABB
-    public static void main(String[] args){
-        Habitación[] Habitaciones = new Habitación[5];
-        Habitación nuevo = new Habitación(1,"simple",1);
-        Habitaciones[0] = nuevo; 
+    public void Down_Hab(){
+        Habitación[] nueva = null;
+        Habitación[] vieja = null;
         Habitación habitacion;
         String[] new_hab;
         int indice = 0;
+        int inicio = 0;
         
-        try (Scanner scFile = new Scanner(new File("./Proyecto2 - habitaciones.csv"))){
-            while(scFile.hasNextLine()){
-                indice += 1;
-            }
-            
-            Habitaciones = new Habitación[indice];
-            
-            indice = 0;
+        try (Scanner scFile = new Scanner(new File("./Booking_hotel - habitaciones.csv"))){
             
             while(scFile.hasNextLine()){
-                new_hab = scFile.nextLine().split(",");
-                habitacion = new Habitación(Integer.parseInt(new_hab[0]), new_hab[1],Integer.parseInt(new_hab[2]));
-                Habitaciones[indice] = habitacion;
-                indice += 1;
+                if(inicio == 0){
+                    new_hab = scFile.nextLine().split(",");
+                    inicio = 1; 
+                }else{
+                    new_hab = scFile.nextLine().split(",");
+                    indice += 1;
+                    habitacion = new Habitación(Integer.parseInt(new_hab[0]), new_hab[1],Integer.parseInt(new_hab[2]));
+                    nueva = new Habitación[indice];
+                    if(indice > 1){
+                        for(int i = 0; i < vieja.length; i++)
+                            nueva[i] = vieja [i];
+                    }
+                    nueva[indice-1] = habitacion;
+                    vieja = nueva;
+                }
             }
+            
         } catch(Exception e){
             System.out.println("Error");
         }
         
-        for(int i = 0; i < Habitaciones.length; i++){
-            System.out.println(Habitaciones[i].toCSV());
+        Ord_Hab orden = new Ord_Hab(nueva) ;
+        nueva = orden.ordenar();
+        
+        Habitaciones arbol = new Habitaciones();
+        
+        for (int i = 0; i < nueva.length; i++) {
+            arbol.insertar(nueva[i]);
+            
         }
+        
+        arbol.lim_may(arbol.getInicial());
+        arbol.lim_men(arbol.getInicial());
+        
+        
             
     }    
 
+    
     //Guardar Habitaciones ABB
+    public static void main(String[] args){
         
         
         
-    public void Up_Hab(){
-        Habitación[] Habitaciones = new Habitación[3];
+        Archivos nuevo = new Archivos();
+        nuevo.Down_Hab();
+        Habitaciones arbol = new Habitaciones();
         
-        Habitación nuevo = new Habitación(1,"simple",1);
-        Habitaciones[0] = nuevo;
-        nuevo = new Habitación(2,"simple",1);
-        Habitaciones[1] = nuevo;
-        nuevo = new Habitación(3,"simple",1);
-        Habitaciones[2] = nuevo;
-        
-        
+        System.out.println(arbol.getInicial().toCSV());
+        System.out.println(arbol.disparador_busqueda(144).toCSV());
         File f = new File("./Proyecto2 - habitaciones.csv");
         try(FileWriter fw = new FileWriter(f);){
-            for(int i = 0; i < Habitaciones.length; i++){
-                fw.write(Habitaciones[i].toCSV() +  "\n");
+            fw.write("num_hab,tipo_hab,piso\n");
+            for(int i = arbol.getMenor(); i <= arbol.getMayor(); i++){
+                Habitación buscado = arbol.disparador_busqueda(i);
+                fw.write( buscado.toCSV()+  "\n");
             } 
         }catch(Exception e){
             System.out.println("Se a producido un error");
         }
-
-        /*Descargar Histótico y enlazarlo en forma de un ABB, además de concectar 
-        * con la respectiva  habitación
-        */
-
-        //Guardar Histórico ABB
-   }
+    }
+     
 }

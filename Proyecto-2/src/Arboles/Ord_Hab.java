@@ -2,22 +2,24 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Cambios;
+package Arboles;
+
+import Objetos.Habitación;
 
 /**
  *
  * @author yangel
  */
-public class Orden {
-    private int[] lista;
+public class Ord_Hab {
+    private Habitación[] lista;
 
-    public Orden(int[] lista) {
+    public Ord_Hab(Habitación[] lista) {
         this.lista = lista;
     }
 
-    public int[] ordenar(){
-        int[] Lista = this.getLista();
-        int[] ordenada = new int[Lista.length];
+    public Habitación[] ordenar(){
+        Habitación[] Lista = this.getLista();
+        Habitación[] ordenada = new Habitación[Lista.length];
         
         if(Lista.length <= 3){
             
@@ -58,8 +60,8 @@ public class Orden {
             }
             
 
-            int[] lista1 = new int[izq];
-            int[] lista2 = new int[der];
+            Habitación[] lista1 = new Habitación[izq];
+            Habitación[] lista2 = new Habitación[der];
             int j = 0;
             int k = 0;
 
@@ -82,13 +84,13 @@ public class Orden {
             
             
             
-            Orden cambio_1 = new Orden(lista1); 
-            int[] lista3 = cambio_1.ordenar();
+            Ord_Hab cambio_1 = new Ord_Hab(lista1); 
+            Habitación[] lista3 = cambio_1.ordenar();
             
             
             
-            Orden cambio_2 = new Orden(lista2); 
-            int[] lista4 = cambio_2.ordenar();
+            Ord_Hab cambio_2 = new Ord_Hab(lista2); 
+            Habitación[] lista4 = cambio_2.ordenar();
             
             
             j = ordenada.length - 1 ;
@@ -114,8 +116,14 @@ public class Orden {
         return ordenada;
     }
     
-    public int[] getLista() {
+    public Habitación[] getLista() {
         return lista;
     }
+
+    
+    
+    
+    
+    
     
 }

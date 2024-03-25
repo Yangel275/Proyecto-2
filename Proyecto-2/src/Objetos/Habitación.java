@@ -63,16 +63,16 @@ public class Habitación {
     
     // Insertar las hojas a las que va estar conectado
     public void insertar(Habitación nuevo){
-        if(nuevo.getNumHab() < this.numHab){
+        if(nuevo.getNumHab() < this.getNumHab()){
             //Insertar habitación conectada en forma de su hoja en el lado izquierdo
-            if(this.ant_hab == null){
+            if(this.getAnt_hab() == null){
                 this.ant_hab = nuevo;
             }else{
                 this.ant_hab.insertar(nuevo);    
             }
         }else{
-            //Insertar habitación conectada en forma de su hoja en el lado izquierdo
-            if(this.sig_hab == null){
+            //Insertar habitación conectada en forma de su hoja en el lado derecho
+            if(this.getSig_hab() == null){
                 this.sig_hab = nuevo;
             }else{
                 this.sig_hab.insertar(nuevo);    
@@ -86,9 +86,25 @@ public class Habitación {
         
     }
 
-    @Override
+    
     public String toString() {
-        return "Habitaci\u00f3n{" + "numHab=" + numHab + ", tipoHab=" + tipoHab + ", piso=" + piso + '}';
+        String Escritura = "";
+        
+        Escritura = "Habitación: " + this.numHab+ "\n";
+        
+        if(this.ant_hab == null){
+            Escritura += "Anterior Habitación: No Tiene \n";
+        }else{
+            Escritura += "Anterior Habitación: " + this.getAnt_hab().numHab+ " \n";
+        }
+        
+        
+        if(this.sig_hab == null){
+            Escritura += "Siguiente Habitación: No Tiene \n";
+        }else{
+            Escritura += "Siguiente Habitación: " + this.getSig_hab().numHab+ " \n";
+        }
+        return Escritura;
     }
     
     

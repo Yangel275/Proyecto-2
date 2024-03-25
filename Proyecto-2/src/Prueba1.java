@@ -4,7 +4,7 @@
  */
 
 
-import Cambios.Orden;
+import Arboles.Orden;
 import Cambios.Arbol;
 
 /**
