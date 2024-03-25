@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Manejo_Csv;
+package Cambios;
 
 /**
  *
@@ -92,11 +92,8 @@ public class Orden {
             
             
             j = ordenada.length - 1 ;
-            System.out.println(j);
             int l = lista3.length - 1;
-            System.out.println(l);
             int t = lista4.length - 1;
-            System.out.println(t);
             
             while(j > 0){
                 if(l > t){

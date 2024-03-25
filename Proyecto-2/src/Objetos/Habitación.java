@@ -15,7 +15,7 @@ public class Habitación {
     private String tipoHab;
     private int piso;
     private int Tamaño;
-    private Historial First;
+    private Historial pFirst;
     private Habitación ant_hab;
     private Habitación sig_hab;
     
@@ -25,7 +25,7 @@ public class Habitación {
         this.tipoHab = tipoHab;
         this.piso = piso;
         this.Tamaño = 0;
-        this.First = null;
+        this.pFirst = null;
         this.ant_hab = null;
         this.sig_hab = null;
     }
@@ -33,11 +33,11 @@ public class Habitación {
     //Agregar nueva información al historial de la habitación
     public void agg_hist(Historial nuevo){
         if(this.getTamaño() == 0){
-            this.setFirst(nuevo);
+            this.setpFirst(nuevo);
             this.setTamaño(this.getTamaño() + 1);
         }else{
             boolean similitud = false;
-            Historial aux = this.getFirst();
+            Historial aux = this.getpFirst();
             for(int i = 0;  i < this.getTamaño(); i++){
                 if(aux == null){
                     break;
@@ -51,7 +51,7 @@ public class Habitación {
             if(similitud == true){
                 String error = "\n\n                 Ya existe este Usuario";
             }else{
-                aux = this.getFirst();
+                aux = this.getpFirst();
                 for(int i = 0; i < this.getTamaño()-1; i++){
                     aux = aux.getNext();
                 }
@@ -79,6 +79,21 @@ public class Habitación {
             }
         }
     }
+    
+    
+    public String toCSV(){
+        return this.getNumHab()+","+this.getTipoHab()+","+this.getPiso();
+        
+    }
+
+    @Override
+    public String toString() {
+        return "Habitaci\u00f3n{" + "numHab=" + numHab + ", tipoHab=" + tipoHab + ", piso=" + piso + '}';
+    }
+    
+    
+    
+    
     
     
     
@@ -128,12 +143,12 @@ public class Habitación {
     
     
     //Indicar el primer elemento del historial
-    public Historial getFirst() {
-        return First;
+    public Historial getpFirst() {
+        return pFirst;
     }
 
-    public void setFirst(Historial First) {
-        this.First = First;
+    public void setpFirst(Historial pFirst) {
+        this.pFirst = pFirst;
     }
 
     
