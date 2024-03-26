@@ -12,6 +12,16 @@ import java.util.Date;
  */
 
 
+/* Encargado de los objetos pertenecientes del csv de los historiales, sirve
+   para guardar y crear objetos de ese archivo
+   cada objeto pertenecerá a una habitación, indicado por el atributo de num_hab
+   
+    Dentro de cada habitación estará con un atribituo que formará una lizta enlazada
+    de estos objetos de manera que esté ordenada de la estadía más reciente a la 
+    más anitgua
+
+*/
+
 public class Histórico {
     private String Cédula;
     private String Nombre;
@@ -22,6 +32,7 @@ public class Histórico {
     private int num_hab;
     private Histórico Next;
 
+    // Construtcor de de Histórico
     public Histórico(String Cédula, String Nombre, String Apellido, String Email, String Genero, String Llegada, int num_hab) {
         this.Cédula = Cédula;
         this.Nombre = Nombre;
@@ -33,14 +44,44 @@ public class Histórico {
         this.Next = null;
     }
     
+    
+    
+    
+    /* Está relacionado con:
+        disparador_Imp()
+        void Imprimir(Histórico historial)
+    
+        para que estos funciones requieren de un String, que conseguirán 
+        mediante está funciona ya que lo devuelve
+        
+        Esto permite actualizar los datos del atributo Escritura de Habitación 
+    
+    */
     public String toImpimir(){
         return this.getCédula()+" "+this.getNombre()+" " +this.getApellido()+" " +this.getEmail()+" " +this.getGenero()+" " +this.getLlegada()+" " +Integer.toString(this.getnum_hab())+"\n";
     }
     
+    
+    
+    
+    /* Está función permite que a la hora de guardar la habitación en el csv
+        se devuelva colocando los datos que recibe el csv y cada dato separado por 
+        comas
+    */
     public String toCSV(){
         return this.getCédula()+","+this.getNombre()+"," +this.getApellido()+","+this.getEmail()+","+this.getGenero()+","+this.getLlegada()+","+Integer.toString(this.getnum_hab());
     }
     
+    
+    
+    
+    /* 
+        Esta función permite función permite la ordenación de los datos de la Lista Enlazada del atributo
+        pFirst que este último pertenece
+    
+        Permite que los objetos sean capaces de compararse en forma de int
+        siendo mayor alquel con fecha más actual
+    */
     public int Date_Str_int(){
         String[] numero1 = this.getLlegada().split("\\/");
         int sum2 = Integer.parseInt(numero1[1]);
@@ -48,6 +89,11 @@ public class Histórico {
         return ci;
     }
     
+    
+    /*
+        De aquí en adelante se encuentre los Get y Stters de cada atributo de 
+        este objeto
+    */
     
     //Cédula
     public String getCédula() {
@@ -126,7 +172,7 @@ public class Histórico {
 
     
 
-    //Obtener siguiente Lista Enlazada
+    //Obtener siguiente objeto Histórico de la Lista Enlazada
     public Histórico getNext() {
         return Next;
     }

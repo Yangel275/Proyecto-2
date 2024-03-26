@@ -17,6 +17,25 @@ public class Habitaciones {
     private static int menor;
     private static int mayor;
   
+        
+        
+    /* Insertar las Habitaciones que estarán conectado dentro del árbol binario equilibrado
+    * Funciona de modo que las uniones son la mitad de la mitad, es decir, la raíz
+    * es la mitad de 300, sin embargo, al haber mayor canditad de raíces de un lado que otro
+    * la hoja izquierda debe contener más raíces que la derecha, por lo que se aumenta 1 a la mitad
+    * es decir la raíz es 151 
+    * 
+    * En caso de no árbol, el primer valor que se coloqué será reconocido como raíz
+    */     
+    public void insertar(Habitación hab){
+        if(this.getInicial() == null){
+            this.setInicial(hab);   
+        }else{
+            this.getInicial().insertar(hab);
+        }
+    }
+
+        
     public void disparador_agg_his(Histórico agregar){
         Habitación habitación = this.getInicial();
         this.agg_his(habitación, agregar);
@@ -46,17 +65,7 @@ public class Habitaciones {
            
         
     }
-            
         
-            
-    public void insertar(Habitación hab){
-        if(this.getInicial() == null){
-            this.setInicial(hab);   
-        }else{
-            this.getInicial().insertar(hab);
-        }
-    }
-
     
     
     public void disparadorInorden(){

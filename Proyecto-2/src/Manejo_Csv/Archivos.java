@@ -21,23 +21,11 @@ import java.util.Scanner;
  */
 public class Archivos {
 
-    public static void main(String[] args) {
-        Archivos arbol = new Archivos();
-        arbol.Down_Hab();
-        arbol.Down_his();
-        arbol.Down_res();
-        
-        arbol.Up_Hab();
-        arbol.Up_his();
-        arbol.Up_res();
-    }
+    
     /*Descargar Histórico y posicionar cada objeto en relación a cada habitación 
-    * de manera que el nodo inicial sea la última persona
-     Se dará forma como una Lista enlazada
+        de manera que el nodo inicial sea la última persona
+        Se dará forma como una Lista enlazada
      */
-    //
-
-    //Descargar Reservaciones y enlazar cada objeto en forma de un ABB
     public void Down_his() {
         
         Histórico[] nueva = null;
