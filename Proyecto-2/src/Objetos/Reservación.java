@@ -14,18 +14,20 @@ import java.time.LocalDate;
 import java.time.LocalDate;
 
 public class Reservación {
-    private int Ci;
+    private String Ci;
     private String Nombre;
     private String Apellido;
     private String Email;
     private String Género;
     private String TipoHab;
     private String Celular;
-    private LocalDate Llegada;
-    private LocalDate Salida;
+    private String Llegada;
+    private String Salida;
+    private Reservación ant_res;
+    private Reservación sig_res;
     
     // Constructor
-    public Reservación(int Ci, String Nombre, String Apellido, String Email, String Genero, String TipoHab, String Celular, LocalDate Llegada, LocalDate Salida) {
+    public Reservación(String Ci, String Nombre, String Apellido, String Email, String Genero, String TipoHab, String Celular, String Llegada, String Salida) {
         this.Ci = Ci;
         this.Nombre = Nombre;
         this.Apellido = Apellido;
@@ -37,12 +39,67 @@ public class Reservación {
         this.Salida = Salida;
     }
 
+    
+    
+    
+    public void insertar(Reservación nuevo){
+        if(nuevo.Ci_Str_int() < this.Ci_Str_int()){
+            //Insertar habitación conectada en forma de su hoja en el lado izquierdo
+            if(this.getAnt_res() == null){
+                this.ant_res = nuevo;
+            }else{
+                this.ant_res.insertar(nuevo);    
+            }
+        }else{
+            //Insertar habitación conectada en forma de su hoja en el lado derecho
+            if(this.getSig_res() == null){
+                this.sig_res = nuevo;
+            }else{
+                this.sig_res.insertar(nuevo);    
+            }
+        }
+    }
+    
+    public String Hojas() {
+        String Escritura = "";
+        
+        Escritura = "Habitación: " + this.Ci + "\n";
+        
+        if(this.ant_res == null){
+            Escritura += "Anterior Habitación: No Tiene \n";
+        }else{
+            Escritura += "Anterior Habitación: " + this.getAnt_res().Ci+ " \n";
+        }
+        
+        
+        if(this.sig_res == null){
+            Escritura += "Siguiente Habitación: No Tiene \n";
+        }else{
+            Escritura += "Siguiente Habitación: " + this.getSig_res().Ci+ " \n";
+        }
+        return Escritura;
+    }
+
+    public String toCSV(){
+        return this.getCi()+","+this.getNombre()+","+this.getApellido()+","+this.getEmail()+","+this.getGénero()+","+this.getTipoHab()+","+this.getCelular()+","+this.getLlegada()+","+this.getSalida();
+    }
+    
+    public String prueba(){
+        return "Cédula: "+this.getCi()+" "+"Nombre y Apellido: "+this.getNombre()+" "+this.getApellido()+"\n";
+    }
+    
+    public int Ci_Str_int(){
+        String[] numero1 = this.getCi().split("\\.");
+        int ci = Integer.parseInt(numero1[0])*1000000 + Integer.parseInt(numero1[1])*1000 + Integer.parseInt(numero1[2]);
+        return ci;
+    }
+
     //Cédula
-    public int getCi() {
+    public String getCi() {
         return Ci;
     }
 
-    public void setCi(int Ci) {
+    public void setCi(String Ci) {
         this.Ci = Ci;
     }
     
@@ -85,7 +142,6 @@ public class Reservación {
     public String getGénero() {
         return Género;
     }
-
     
     public void setGénero(String Género) {
         this.Género = Género;
@@ -116,23 +172,51 @@ public class Reservación {
     
 
     //Fecha de llegada
-    public LocalDate getLlegada() {
+    public String getLlegada() {
         return Llegada;
     }
 
-    public void setLlegada(LocalDate Llegada) {
+    public void setLlegada(String Llegada) {
         this.Llegada = Llegada;
     }
 
     
 
     //Fecha de Salida
-    public LocalDate getSalida() {
+    public String getSalida() {
         return Salida;
     }
 
-    public void setSalida(LocalDate Salida) {
+    public void setSalida(String Salida) {
         this.Salida = Salida;
+    }
+
+    /**
+     * @return the ant_res
+     */
+    public Reservación getAnt_res() {
+        return ant_res;
+    }
+
+    /**
+     * @param ant_res the ant_res to set
+     */
+    public void setAnt_res(Reservación ant_res) {
+        this.ant_res = ant_res;
+    }
+
+    /**
+     * @return the sig_res
+     */
+    public Reservación getSig_res() {
+        return sig_res;
+    }
+
+    /**
+     * @param sig_res the sig_res to set
+     */
+    public void setSig_res(Reservación sig_res) {
+        this.sig_res = sig_res;
     }
     
     

@@ -61,7 +61,7 @@ public class Habitación {
         }
     }
     
-    // Insertar las hojas a las que va estar conectado
+    // Insertar las Habitaciones que estarán conectado dentro del árbol binario equilibrado
     public void insertar(Habitación nuevo){
         if(nuevo.getNumHab() < this.getNumHab()){
             //Insertar habitación conectada en forma de su hoja en el lado izquierdo
@@ -87,7 +87,7 @@ public class Habitación {
     }
 
     
-    public String toString() {
+    public String Hojas() {
         String Escritura = "";
         
         Escritura = "Habitación: " + this.numHab+ "\n";

@@ -16,6 +16,7 @@ public class Habitaciones {
     private static int menor;
     private static int mayor;
   
+    
     public void insertar(Habitación hab){
         if(this.getInicial() == null){
             this.setInicial(hab);   
@@ -32,7 +33,7 @@ public class Habitaciones {
         if(hab == null){
             return;
         }else{
-            System.out.println(hab.toString());
+            System.out.println(hab.Hojas());
             inorden(hab.getAnt_hab());
             inorden(hab.getSig_hab());
         }

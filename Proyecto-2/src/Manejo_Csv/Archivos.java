@@ -6,7 +6,8 @@ package Manejo_Csv;
 
 
 import Arboles.Habitaciones;
-import Arboles.Ord_Hab;
+import Arboles.Orden;
+import Arboles.Reservaciones;
 import Objetos.Estado;
 import Objetos.Habitación;
 import Objetos.Historial;
@@ -33,9 +34,90 @@ public class Archivos {
 
         //Guardar Estados Hash Table
 
-        //Descargar Reservaciones y enlazar cada objeto en forma de un ABB
+    //Descargar Reservaciones y enlazar cada objeto en forma de un ABB
+    
+    public void Down_res(){
+        Reservación[] nueva = null;
+        Reservación[] vieja = null;
+        Reservación reserva;
+        String[] new_res;
+        int indice = 0;
+        int inicio = 0;
+        
+        try (Scanner scFile = new Scanner(new File("./Booking_hotel - reservas.csv"))){
+            
+            while(scFile.hasNextLine()){
+                if(inicio == 0){
+                    new_res = scFile.nextLine().split(",");
+                    inicio = 1; 
+                }else{
+                    new_res = scFile.nextLine().split(",");
+                    indice += 1;
+                    reserva = new Reservación(new_res[0], new_res[1], new_res[2], new_res[3],new_res[4],new_res[5],new_res[6],new_res[7],new_res[8]);
+                    nueva = new Reservación[indice];
+                    if(indice > 1){
+                        for(int i = 0; i < vieja.length; i++)
+                            nueva[i] = vieja [i];
+                    }
+                    nueva[indice-1] = reserva;
+                    vieja = nueva;
+                }
+            }
+            
+        } catch(Exception e){
+            System.out.println("Error");
+        }
+        
+       
+        
+        Orden orden = new Orden();
+        orden.setRes(nueva);
+        
+        
+        nueva = orden.men_may_res();
+        
+        Reservaciones arbol = new Reservaciones();
+        
+        for (int i = 0; i < nueva.length; i++) {
+            arbol.insertar(nueva[i]);
+            
+        }
+        
+        arbol.def_lista();
+        arbol.disparador_list();
+        
+        for(int i = 0; i < arbol.getGuardar().length ; i++)
+            System.out.println(arbol.getGuardar()[i].getCi());
+        
+    }
+    //Guardar Reservaciones ABB
+    public static void main(String[] args){
+        
+        Archivos hoja = new Archivos();
+        hoja.Down_res();
+        
+        Reservaciones arbol = new Reservaciones();
+        arbol.def_lista();
+        arbol.disparador_list();
 
-        //Guardar Reservaciones ABB
+        Reservación[] guardar = arbol.getGuardar();
+
+
+        File f = new File("./Booking_hotel - reservas.csv");
+        try(FileWriter fw = new FileWriter(f);){
+            fw.write("ci,primer_nombre,segundo_nombre,email,genero,tipo_hab,celular,llegada,salida\n");
+            for(int i = 0; i < guardar.length; i++){
+                Reservación buscado = guardar[i];
+                fw.write( buscado.toCSV()+  "\n");
+            } 
+        }catch(Exception e){
+            System.out.println("Se a producido un error");
+        }
+        
+    }
+    
+    
+    
 
     //Descargar Habitaciones y enlazarlo en forma de un ABB
     public void Down_Hab(){
@@ -70,9 +152,12 @@ public class Archivos {
             System.out.println("Error");
         }
         
-        Ord_Hab orden = new Ord_Hab(nueva) ;
+        Orden orden = new Orden();
+        orden.setHab(nueva);
         
-        nueva = orden.men_may();
+        
+        nueva = orden.men_may_hab();
+        
         
         Habitaciones arbol = new Habitaciones();
         
@@ -83,21 +168,14 @@ public class Archivos {
         
         arbol.lim_may(arbol.getInicial());
         arbol.lim_men(arbol.getInicial());
-        
-        
-        
-        
-            
     }    
 
     
     //Guardar Habitaciones ABB
-    public static void main(String[] args){
-        
-        
-        
+    public void Up_Hab(){
         Archivos nuevo = new Archivos();
         nuevo.Down_Hab();
+        
         Habitaciones arbol = new Habitaciones();
         
         File f = new File("./Booking_hotel - habitaciones.csv");

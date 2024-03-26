@@ -32,7 +32,7 @@ public class Prueba1 {
         
         
         
-        Orden prueba = new Orden(lista);
+        Orden1 prueba = new Orden1(lista);
         int[] nuevo = prueba.men_may();
         for(int i = 0; i < nuevo.length; i++ ){
             System.out.println(nuevo[i]);

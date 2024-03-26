@@ -2,29 +2,27 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Arboles;
-
-import Objetos.Habitación;
+package Cambios;
 
 /**
  *
  * @author yangel
  */
-public class Ord_Hab {
-    private Habitación[] lista;
+public class Orden1 {
+    private int[] lista;
 
-    public Ord_Hab(Habitación[] lista) {
+    public Orden1(int[] lista) {
         this.lista = lista;
     }
 
-    public Habitación[] men_may(){
-        Habitación[] lista = this.getLista();
-        Habitación[] viejo = null;
-        Habitación[] nuevo = null;
+    public int[] men_may(){
+        int[] lista = this.getLista();
+        int[] viejo = null;
+        int[] nuevo = null;
         
         int j = 0;
         for(int i=0; i < lista.length; i++){
-            nuevo = new Habitación[i+1];
+            nuevo = new int[i+1];
             j = i;
             if(0<i){
                 for(int l = 0; l < viejo.length; l++){
@@ -32,8 +30,8 @@ public class Ord_Hab {
                 }
                 nuevo[i] = lista[i];
                 
-                while(nuevo[j-1].getNumHab()>nuevo[j].getNumHab()){
-                    Habitación numero = nuevo[j];
+                while(nuevo[j-1]>nuevo[j]){
+                    int numero = nuevo[j];
                     nuevo[j] = nuevo[j-1];
                     nuevo[j-1] = numero;
                     
@@ -54,16 +52,13 @@ public class Ord_Hab {
             }
             
         }
-        Ord_Hab arreglo = new Ord_Hab(nuevo);
-        
-        nuevo = arreglo.ordenar();
-        
         return nuevo;
     }
     
-    public Habitación[] ordenar(){
-        Habitación[] Lista = this.getLista();
-        Habitación[] ordenada = new Habitación[Lista.length];
+    
+    public int[] ordenar(){
+        int[] Lista = this.getLista();
+        int[] ordenada = new int[Lista.length];
         
         if(Lista.length <= 3){
             
@@ -104,8 +99,8 @@ public class Ord_Hab {
             }
             
 
-            Habitación[] lista1 = new Habitación[izq];
-            Habitación[] lista2 = new Habitación[der];
+            int[] lista1 = new int[izq];
+            int[] lista2 = new int[der];
             int j = 0;
             int k = 0;
 
@@ -128,13 +123,13 @@ public class Ord_Hab {
             
             
             
-            Ord_Hab cambio_1 = new Ord_Hab(lista1); 
-            Habitación[] lista3 = cambio_1.ordenar();
+            Orden1 cambio_1 = new Orden1(lista1); 
+            int[] lista3 = cambio_1.ordenar();
             
             
             
-            Ord_Hab cambio_2 = new Ord_Hab(lista2); 
-            Habitación[] lista4 = cambio_2.ordenar();
+            Orden1 cambio_2 = new Orden1(lista2); 
+            int[] lista4 = cambio_2.ordenar();
             
             
             j = ordenada.length - 1 ;
@@ -160,14 +155,8 @@ public class Ord_Hab {
         return ordenada;
     }
     
-    public Habitación[] getLista() {
+    public int[] getLista() {
         return lista;
     }
-
-    
-    
-    
-    
-    
     
 }
