@@ -18,7 +18,17 @@ public class Orden{
     private Histórico[] his;
     
     
+    /* Permite ordenar la lista de históricos obtenidos del archivo csv
+        de manera que estén primero los historiales de la habtiación 
+        más pequeña y de último los historiales de la más grande.
+        
+        A su vez están ordenado de manera que primero los históricos más viejos
+        y de último los históricos más recientes
     
+        Para odenarlo uso los atributos de Número de habitación y 
+        Fecha de llegada de cada objeto Histórico
+        
+    */
     public Histórico[] men_may_his(){
         Histórico[] lista = this.getHis();
         Histórico[] viejo = null;
@@ -66,7 +76,17 @@ public class Orden{
     }
    
 
-
+    
+    
+    
+    /* Permite ordenar la lista de Reservación de manera que estén de las cédulas
+        de menor a mayor
+    
+        Está función está conectado con ord_res() la cuál funcionará después de 
+        cumplir con el orden requerido
+    
+    
+    */
     public Reservación[] men_may_res(){
         Reservación[] lista = this.getRes();
         Reservación[] viejo = null;
@@ -114,6 +134,13 @@ public class Orden{
         return nuevo;
     }
     
+    /* Despues de men_may_res() se encargará de establecer las raíces y Hojas
+        del árbol binario en la lista conseguida, de modo que se forme un arbol binario
+        equilibrado (Reservaciones).
+    
+        Formará una lista con los valores que estén más cerca de la raíz
+    
+    */
     public Reservación[] ord_res(){
         Reservación[] Lista = this.getRes();
         Reservación[] ordenada = new Reservación[Lista.length];
@@ -218,6 +245,16 @@ public class Orden{
     
     
     
+    
+    /* Permite ordenar la lista de Habitaciones de manera que estén el número de
+         habitación de menor a mayor, una función que solo es necesario en caso
+         de desordenar la información vigente 
+    
+        Está función está conectado con ord_hab() la cuál funcionará después de 
+        cumplir con el orden requerido
+    
+    
+    */
     public Habitación[] men_may_hab(){
         Habitación[] lista = this.gethab();
         Habitación[] viejo = null;
@@ -263,6 +300,14 @@ public class Orden{
         return nuevo;
     }
     
+    
+    /* Despues de men_may_hab(), esta función se encargará de establecer las raíces y Hojas
+        del árbol binario en la lista conseguida, de modo que se forme un arbol binario
+        equilibrado (Habitaciones).
+    
+        Formará una lista con los valores que estén más cerca de la raíz
+    
+    */
     public Habitación[] ord_hab(){
         Habitación[] Lista = this.gethab();
         Habitación[] ordenada = new Habitación[Lista.length];
@@ -366,6 +411,11 @@ public class Orden{
     
     
     
+    
+    
+    // Aquí se encuentra los Get y Setter de los Atributos de Orden 
+    
+    // Lista de habitaciones obtenidas del csv
     public Habitación[] gethab() {
         return hab;
     }
@@ -375,7 +425,7 @@ public class Orden{
     }
 
     
-    
+    // Lista de reservaciones obtenidas del csv
     public Reservación[] getRes() {
         return res;
     }
@@ -385,11 +435,11 @@ public class Orden{
     }
 
     
+    // Lista de históricos obtenidas del csv
     public Histórico[] getHis() {
         return his;
     }
 
-    
     public void setHis(Histórico[] his) {
         this.his = his;
     }

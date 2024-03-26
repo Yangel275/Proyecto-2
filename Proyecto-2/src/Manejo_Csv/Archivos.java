@@ -21,7 +21,17 @@ import java.util.Scanner;
  */
 public class Archivos {
 
-    
+    /*
+       Orden recomendado para el inicializador
+        nuevo.Down_Hab();
+        nuevo.Down_res();
+        nuevo.Down_his();
+        
+        Orden recomendado para subir la informacion a los csv
+        nuevo.Up_Hab();
+        nuevo.Up_his();
+        nuevo.Up_his();
+    */ 
     /*Descargar Histórico y posicionar cada objeto en relación a cada habitación 
         de manera que el nodo inicial sea la última persona
         Se dará forma como una Lista enlazada

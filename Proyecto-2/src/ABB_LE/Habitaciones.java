@@ -12,6 +12,11 @@ import Objetos.Histórico;
  *
  * @author yangel
  */
+
+/*
+    Al ser un objeto con atributos estáticos, no importe donde lo generes debe tener la información
+
+*/
 public class Habitaciones {
     private static Habitación inicial;
     private static int menor;
@@ -35,12 +40,27 @@ public class Habitaciones {
         }
     }
 
+    
+    /*
+        Iniciador para agregar un objeto Historial en una de las habitaciones.
+        Como es un árbol binario equilibrado el valor de inicio será la raíz
         
+    
+        Está conectado con disparador_agg_his()
+        Usar primero disipador antes 
+    
+        Se requiere de colocar el histórico que se quiere agregar
+    */
     public void disparador_agg_his(Histórico agregar){
         Habitación habitación = this.getInicial();
         this.agg_his(habitación, agregar);
     }
     
+    /*
+        Este función permite ubicar la habitación al cual está relacionado
+        el objeto Histórico y de allí colocarlo como el nuevo pFrist ya que
+        es el último dato que se sabe de la habitación
+    */
     public void agg_his(Habitación habitacion,  Histórico agregar){
         Habitación buscado = null;
         if(habitacion.getNumHab() == agregar.getnum_hab()){
@@ -67,7 +87,15 @@ public class Habitaciones {
     }
         
     
+    /*
+        Similar al disparador_agg_his
+        sin embargo su única función es revisar como se encuentra 
+        ordenado el árbol en si
+        
+        disparadorInorden() y inorden(Habitación hab) están conectados
+        
     
+    */
     public void disparadorInorden(){
         this.inorden(this.getInicial());
     }
@@ -84,6 +112,17 @@ public class Habitaciones {
     
     
     
+    
+    /*
+        Similar al disparador_agg_his
+        sin embargo su única función se encarga de buscar la habitación
+        a la que está pidiendo con el numero que es un int
+    
+        Usar primero esta función antes que el:
+    
+        buscador(Habitación habitacion,  int numero)
+    */
+    
     public Habitación disparador_busqueda( int numero){
         Habitación habitación = this.getInicial();
         Habitación buscado = this.buscador(habitación, numero);
@@ -91,6 +130,18 @@ public class Habitaciones {
         
     }
     
+   
+    
+    
+    /*
+        Este función permite ubicar la habitación que se busca, devolviendo 
+        dicha habitación como resultado de la búsqueda
+    
+        Usar primero:
+        disparador_busqueda( int numero)
+    
+    
+    */
     public Habitación buscador(Habitación habitacion,  int numero){
         Habitación buscado = null;
         if(habitacion.getNumHab() == numero){
@@ -116,24 +167,25 @@ public class Habitaciones {
         return buscado;
     }
 
-      
     
     
-    public Habitación getInicial() {
-          return inicial;
-      }
-
-     
-    public void setInicial(Habitación inicial) {
-          this.inicial = inicial;
-    }
-
+    /* Otro método de disparador 
+        Relacionado con el disparador de Habitación que permite actualizar el String
+        Escritura
+    
+        Se puede usar este función primero, o en su defecto
+            this.disparador_busqueda(numero) -> Función del objeto Habitación
+    */  
     public void disparador_imp( int numero){
         Habitación hab = this.disparador_busqueda(numero);
         hab.disparador_Imp();
     }
     
     
+    /*
+        Función que permite definir el número de habitación más pequeño de
+        todos los que se encuentra en el árbol
+    */
     public void lim_men(Habitación inicial){
         int menor;
         if(inicial.getAnt_hab() == null){
@@ -146,6 +198,10 @@ public class Habitaciones {
         
     }
     
+    /*
+        Función que permite definir el número de habitación más grande de
+        todos los que se encuentra en el árbol
+    */
     public void lim_may(Habitación inicial){
         int mayor;
         if(inicial.getSig_hab() == null){
@@ -155,6 +211,22 @@ public class Habitaciones {
             this.lim_may(inicial.getSig_hab());
         }
     }
+    
+    
+    
+    //Aquí se encuentra los Get y Setters de los atributos de Habitaciones
+    
+    
+    public Habitación getInicial() {
+          return inicial;
+      }
+
+     
+    public void setInicial(Habitación inicial) {
+          this.inicial = inicial;
+    }
+
+    
       
     public int getMenor() {
         return menor;

@@ -26,7 +26,7 @@ public class Reservación {
     private Reservación ant_res;
     private Reservación sig_res;
     
-    // Constructor
+    // Constructor de Reservación
     public Reservación(String Ci, String Nombre, String Apellido, String Email, String Genero, String TipoHab, String Celular, String Llegada, String Salida) {
         this.Ci = Ci;
         this.Nombre = Nombre;
@@ -41,7 +41,13 @@ public class Reservación {
 
     
     
+    /*  Ubciar en esta  "Raíz" las hojas ya sea ant res o sig res en caso de ser 
+        vacías, en caso de no ser asi, buscará en las hojas ant_res o sig_res aquellas
+        si tiene o no hojas para ubicarlas en dicho espacio
     
+        Su posición se verá reflejada también por la cédula, si es más grande o más pequeña
+    
+    */
     public void insertar(Reservación nuevo){
         if(nuevo.Ci_Str_int() < this.Ci_Str_int()){
             //Insertar habitación conectada en forma de su hoja en el lado izquierdo
@@ -60,6 +66,10 @@ public class Reservación {
         }
     }
     
+    
+    /*
+        Método para revisar si una Reservación contiene o no, ant_res y sig_res 
+    */
     public String Hojas() {
         String Escritura = "";
         
@@ -80,20 +90,39 @@ public class Reservación {
         return Escritura;
     }
 
+    
+    
+    /*
+       Permite colocar los datos de manera que se puede subir al csv 
+    */
     public String toCSV(){
         return this.getCi()+","+this.getNombre()+","+this.getApellido()+","+this.getEmail()+","+this.getGénero()+","+this.getTipoHab()+","+this.getCelular()+","+this.getLlegada()+","+this.getSalida();
     }
     
+    
+    /*
+        Método de revisión para el funcionamiento del árbol
+    */
     public String prueba(){
         return "Cédula: "+this.getCi()+" "+"Nombre y Apellido: "+this.getNombre()+" "+this.getApellido()+"\n";
     }
     
+    
+    /*
+        Permite usar el atributo ci o cédula de manera que se convierta en int 
+        pueda comprar dos objetos mediante este atributo
+    */
     public int Ci_Str_int(){
         String[] numero1 = this.getCi().split("\\.");
         int ci = Integer.parseInt(numero1[0])*1000000 + Integer.parseInt(numero1[1])*1000 + Integer.parseInt(numero1[2]);
         return ci;
     }
 
+    
+    
+    //Se encuentra los Get y Setter de los atributos del objeto
+    
+    
     //Cédula
     public String getCi() {
         return Ci;
