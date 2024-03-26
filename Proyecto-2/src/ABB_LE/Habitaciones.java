@@ -2,10 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Arboles;
+package ABB_LE;
 
 
 import Objetos.Habitación;
+import Objetos.Histórico;
 
 /**
  *
@@ -16,6 +17,11 @@ public class Habitaciones {
     private static int menor;
     private static int mayor;
   
+    public void agg_hab(Histórico agregar){
+        int buscar = agregar.getnum_hab();
+        Habitación hab_bus = this.buscador(this.getInicial(), buscar);
+        hab_bus.agg_hist(agregar);
+    }
     
     public void insertar(Habitación hab){
         if(this.getInicial() == null){

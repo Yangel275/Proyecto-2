@@ -2,9 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Arboles;
+package ABB_LE;
 
 import Objetos.Habitación;
+import Objetos.Histórico;
 import Objetos.Reservación;
 
 /**
@@ -13,7 +14,57 @@ import Objetos.Reservación;
  */
 public class Orden{
     private Habitación[] hab;
-    private Reservación[] res; 
+    private Reservación[] res;
+    private Histórico[] his;
+    
+    
+    
+    public Histórico[] men_may_his(){
+        Histórico[] lista = this.getHis();
+        Histórico[] viejo = null;
+        Histórico[] nuevo = null;
+        
+       
+        for(int i=0; i < lista.length; i++){
+            nuevo = new Histórico[i+1];
+            if(0<i){
+                for(int l = 0; l < viejo.length; l++){
+                    nuevo[l] = viejo[l];
+                }
+                nuevo[i] = lista[i];
+                for(int j = 0; j<nuevo.length; j++){
+                    if(j != 0){
+                        if(nuevo[j-1].getnum_hab() > nuevo[j].getnum_hab()){
+                            Histórico numero = nuevo[j];
+                            nuevo[j] = nuevo[j-1];
+                            nuevo[j-1] = numero;
+                        }
+                        if(nuevo[j-1].getnum_hab() == nuevo[j].getnum_hab()){
+                            if(nuevo[j-1].Date_Str_int() > nuevo[j].Date_Str_int()){
+                                Histórico numero = nuevo[j];
+                                nuevo[j] = nuevo[j-1];
+                                nuevo[j-1] = numero;
+                            }
+                        }
+                    }
+                }
+                viejo = nuevo;
+                    
+                    
+            }else{
+                nuevo[i] = lista[i];
+                viejo = nuevo;
+                
+            }
+            
+        }
+        
+        Orden arreglo = new Orden();
+        arreglo.setHis(nuevo);
+        
+        return nuevo;
+    }
+   
 
 
     public Reservación[] men_may_res(){
@@ -164,6 +215,9 @@ public class Orden{
         return ordenada;
     }
     
+    
+    
+    
     public Habitación[] men_may_hab(){
         Habitación[] lista = this.gethab();
         Habitación[] viejo = null;
@@ -310,6 +364,8 @@ public class Orden{
         return ordenada;
     }
     
+    
+    
     public Habitación[] gethab() {
         return hab;
     }
@@ -319,13 +375,23 @@ public class Orden{
     }
 
     
+    
     public Reservación[] getRes() {
         return res;
     }
-
     
     public void setRes(Reservación[] res) {
         this.res = res;
+    }
+
+    
+    public Histórico[] getHis() {
+        return his;
+    }
+
+    
+    public void setHis(Histórico[] his) {
+        this.his = his;
     }
     
     

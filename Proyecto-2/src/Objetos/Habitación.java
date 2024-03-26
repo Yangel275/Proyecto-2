@@ -15,7 +15,7 @@ public class Habitación {
     private String tipoHab;
     private int piso;
     private int Tamaño;
-    private Historial pFirst;
+    private Histórico pFirst;
     private Habitación ant_hab;
     private Habitación sig_hab;
     
@@ -31,13 +31,13 @@ public class Habitación {
     }
     
     //Agregar nueva información al historial de la habitación
-    public void agg_hist(Historial nuevo){
+    public void agg_hist(Histórico nuevo){
         if(this.getTamaño() == 0){
             this.setpFirst(nuevo);
             this.setTamaño(this.getTamaño() + 1);
         }else{
             boolean similitud = false;
-            Historial aux = this.getpFirst();
+            Histórico aux = this.getpFirst();
             for(int i = 0;  i < this.getTamaño(); i++){
                 if(aux == null){
                     break;
@@ -52,11 +52,8 @@ public class Habitación {
                 String error = "\n\n                 Ya existe este Usuario";
             }else{
                 aux = this.getpFirst();
-                for(int i = 0; i < this.getTamaño()-1; i++){
-                    aux = aux.getNext();
-                }
-                aux.setNext(nuevo);
-                this.setTamaño(1+ this.getTamaño());  
+                nuevo.setNext(aux);
+                this.setpFirst(nuevo);
             }            
         }
     }
@@ -109,7 +106,13 @@ public class Habitación {
     
     
     
-    
+    public void Imprimir(){
+        
+        for(int i = 0; i < this.getTamaño(); i++){
+            System.out.println(this.pFirst.Imprimir());
+            this.pFirst = this.pFirst.getNext();
+        }
+    }
     
     
     
@@ -159,11 +162,11 @@ public class Habitación {
     
     
     //Indicar el primer elemento del historial
-    public Historial getpFirst() {
+    public Histórico getpFirst() {
         return pFirst;
     }
 
-    public void setpFirst(Historial pFirst) {
+    public void setpFirst(Histórico pFirst) {
         this.pFirst = pFirst;
     }
 

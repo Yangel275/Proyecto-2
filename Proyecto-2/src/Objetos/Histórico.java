@@ -10,19 +10,19 @@ import java.util.Date;
  *
  * @author yangel
  */
-import java.time.LocalDate;
 
-public class Historial {
+
+public class Histórico {
     private String Cédula;
     private String Nombre;
     private String Apellido;
     private String Email; // Reconocer que es un email hacerlo mediante el "@" y el "." (Despues de que se consiga "@" busca que después haya un punto)
     private String Genero;
-    private Date Llegada;
+    private String Llegada;
     private int num_hab;
-    private Historial Next;
+    private Histórico Next;
 
-    public Historial(String Cédula, String Nombre, String Apellido, String Email, String Genero, Date Llegada, int num_hab) {
+    public Histórico(String Cédula, String Nombre, String Apellido, String Email, String Genero, String Llegada, int num_hab) {
         this.Cédula = Cédula;
         this.Nombre = Nombre;
         this.Apellido = Apellido;
@@ -33,9 +33,16 @@ public class Historial {
         this.Next = null;
     }
     
+    public String Imprimir(){
+        return this.getCédula()+" "+this.getNombre()+" " +this.getApellido()+" " +this.getEmail()+" " +this.getGenero()+" " +this.getLlegada()+" " +Integer.toString(this.getnum_hab());
+    }
     
-    
-    
+    public int Date_Str_int(){
+        String[] numero1 = this.getLlegada().split("\\/");
+        int sum2 = Integer.parseInt(numero1[1]);
+        int ci = Integer.parseInt(numero1[0])*sum2 + Integer.parseInt(numero1[1])*sum2*sum2 + Integer.parseInt(numero1[2])*sum2;
+        return ci;
+    }
     
     //Cédula
     public String getCédula() {
@@ -93,11 +100,11 @@ public class Historial {
     
 
     // Fecha de Llegada
-    public Date getLlegada() {
+    public String getLlegada() {
         return Llegada;
     }
 
-    public void setLlegada(Date Llegada) {
+    public void setLlegada(String Llegada) {
         this.Llegada = Llegada;
     }
 
@@ -115,11 +122,11 @@ public class Historial {
     
 
     //Obtener siguiente Lista Enlazada
-    public Historial getNext() {
+    public Histórico getNext() {
         return Next;
     }
 
-    public void setNext(Historial Next) {
+    public void setNext(Histórico Next) {
         this.Next = Next;
     }
 
