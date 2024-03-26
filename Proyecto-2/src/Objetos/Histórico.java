@@ -33,8 +33,12 @@ public class Histórico {
         this.Next = null;
     }
     
-    public String Imprimir(){
+    public String toImpimir(){
         return this.getCédula()+" "+this.getNombre()+" " +this.getApellido()+" " +this.getEmail()+" " +this.getGenero()+" " +this.getLlegada()+" " +Integer.toString(this.getnum_hab());
+    }
+    
+    public String toCSV(){
+        return this.getCédula()+","+this.getNombre()+"," +this.getApellido()+","+this.getEmail()+","+this.getGenero()+","+this.getLlegada()+","+Integer.toString(this.getnum_hab());
     }
     
     public int Date_Str_int(){
@@ -43,6 +47,7 @@ public class Histórico {
         int ci = Integer.parseInt(numero1[0])*sum2 + Integer.parseInt(numero1[1])*sum2*sum2 + Integer.parseInt(numero1[2])*sum2;
         return ci;
     }
+    
     
     //Cédula
     public String getCédula() {

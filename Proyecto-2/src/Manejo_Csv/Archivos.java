@@ -28,7 +28,7 @@ public class Archivos {
     //
 
     //Descargar Reservaciones y enlazar cada objeto en forma de un ABB
-    public static void main(String[] args) {
+    public void Down_his() {
         
         Histórico[] nueva = null;
         Histórico[] vieja = null;
@@ -73,20 +73,58 @@ public class Archivos {
         
         Habitaciones hab = new Habitaciones();
         
+        
         for(int i =0 ; i < nueva.length; i++ ){
-            hab.agg_hab(nueva[i]);
+            hab.disparador_agg_his(nueva[i]);
         }
         
         
         
         for(int i = hab.getMenor() ; i <= hab.getMayor(); i++ ){
             Habitación esta = hab.disparador_busqueda(i);
-            System.out.println( "Habitación: "+esta.getNumHab()+"\n");
-            System.out.println();
+            System.out.println( "Habitación: "+esta.getNumHab()+"\n"); 
+            System.out.println("\n"+esta.getTamaño()+"\n");
+            if(esta.getpFirst()== null){
+                System.out.println("No tiene");
+                System.out.println("");
+                System.out.println("");
+            }else{
+                esta.Imprimir(esta.getpFirst());
+                System.out.println("");
+                System.out.println("");
+            }
+            
         }
     }
 
     //Guardar Histórico Lista enlazada
+    public void Up_his(){
+
+        Habitaciones arbol = new Habitaciones();
+
+        File f = new File("./Booking_hotel - habitaciones.csv");
+        try (FileWriter fw = new FileWriter(f);) {
+            fw.write("num_hab,tipo_hab,piso\n");
+            for (int i = arbol.getMenor(); i <= arbol.getMayor(); i++) {
+                Habitación buscado = arbol.disparador_busqueda(i);
+                if(buscado.getTamaño()>0){
+                    Histórico aux = buscado.getpFirst(); 
+                    for(int j = 0; j<buscado.getTamaño(); j++){
+                        fw.write(aux.toCSV() + "\n");
+                        aux = aux.getNext();
+                    }
+                }
+                    
+            }
+        } catch (Exception e) {
+            System.out.println("Se a producido un error");
+        }
+
+    }
+    
+    
+    
+    //Descargar Reservaciones y enlazarlo en forma de un ABB
     public void Down_res() {
         Reservación[] nueva = null;
         Reservación[] vieja = null;
@@ -139,9 +177,6 @@ public class Archivos {
 
     //Guardar Reservaciones ABB
     public void Up_res() {
-
-        Archivos hoja = new Archivos();
-        hoja.Down_res();
 
         Reservaciones arbol = new Reservaciones();
         arbol.def_lista();
@@ -214,9 +249,6 @@ public class Archivos {
 
     //Guardar Habitaciones ABB
     public void Up_Hab() {
-        Archivos nuevo = new Archivos();
-        nuevo.Down_Hab();
-
         Habitaciones arbol = new Habitaciones();
 
         File f = new File("./Booking_hotel - habitaciones.csv");

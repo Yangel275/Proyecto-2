@@ -17,12 +17,38 @@ public class Habitaciones {
     private static int menor;
     private static int mayor;
   
-    public void agg_hab(Histórico agregar){
-        int buscar = agregar.getnum_hab();
-        Habitación hab_bus = this.buscador(this.getInicial(), buscar);
-        hab_bus.agg_hist(agregar);
+    public void disparador_agg_his(Histórico agregar){
+        Habitación habitación = this.getInicial();
+        this.agg_his(habitación, agregar);
     }
     
+    public void agg_his(Habitación habitacion,  Histórico agregar){
+        Habitación buscado = null;
+        if(habitacion.getNumHab() == agregar.getnum_hab()){
+            habitacion.agg_hist(agregar);
+        }
+        
+        if(habitacion.getNumHab() > agregar.getnum_hab()){
+            if(habitacion.getAnt_hab() == null){
+                buscado = null;
+            }else{
+                this.agg_his(habitacion.getAnt_hab(), agregar);
+            }
+        }
+        
+        if(habitacion.getNumHab() < agregar.getnum_hab()){
+           if(habitacion.getSig_hab() == null){
+                buscado = null;
+            }else{
+                this.agg_his(habitacion.getSig_hab(), agregar);
+            } 
+        }
+           
+        
+    }
+            
+        
+            
     public void insertar(Habitación hab){
         if(this.getInicial() == null){
             this.setInicial(hab);   
@@ -31,6 +57,8 @@ public class Habitaciones {
         }
     }
 
+    
+    
     public void disparadorInorden(){
         this.inorden(this.getInicial());
     }
@@ -44,6 +72,8 @@ public class Habitaciones {
             inorden(hab.getSig_hab());
         }
     }
+    
+    
     
     public Habitación disparador_busqueda( int numero){
         Habitación habitación = this.getInicial();
@@ -78,6 +108,8 @@ public class Habitaciones {
     }
 
       
+    
+    
     public Habitación getInicial() {
           return inicial;
       }
@@ -87,6 +119,11 @@ public class Habitaciones {
           this.inicial = inicial;
     }
 
+    public void disparador_imp( int numero){
+        Habitación hab = this.disparador_busqueda(numero);
+        hab.disparador_Imp();
+    }
+    
     
     public void lim_men(Habitación inicial){
         int menor;

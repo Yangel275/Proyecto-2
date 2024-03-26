@@ -36,25 +36,11 @@ public class Habitación {
             this.setpFirst(nuevo);
             this.setTamaño(this.getTamaño() + 1);
         }else{
-            boolean similitud = false;
             Histórico aux = this.getpFirst();
-            for(int i = 0;  i < this.getTamaño(); i++){
-                if(aux == null){
-                    break;
-                }
-                if(nuevo.equals(aux)){
-                    similitud = true;
-                        break;
-                }
-                aux = aux.getNext();
-            }    
-            if(similitud == true){
-                String error = "\n\n                 Ya existe este Usuario";
-            }else{
-                aux = this.getpFirst();
-                nuevo.setNext(aux);
-                this.setpFirst(nuevo);
-            }            
+            nuevo.setNext(aux);
+            this.setpFirst(nuevo);
+            this.setTamaño(this.getTamaño()+1);
+                        
         }
     }
     
@@ -104,13 +90,19 @@ public class Habitación {
         return Escritura;
     }
     
+    public void disparador_Imp(){
+        if(this.getpFirst() != null){
+            Histórico iniciar = this.getpFirst();
+            this.Imprimir(iniciar);
+        }else{
+            return;
+        }
+    }
     
-    
-    public void Imprimir(){
-        
-        for(int i = 0; i < this.getTamaño(); i++){
-            System.out.println(this.pFirst.Imprimir());
-            this.pFirst = this.pFirst.getNext();
+    public void Imprimir(Histórico historial){
+        System.out.println(historial.toImpimir());
+        if(historial.getNext() != null){
+            this.Imprimir(historial.getNext());
         }
     }
     
