@@ -8,6 +8,11 @@ package HashTA;
  *
  * @author gabrielorozco
  */
+import java.io.File;
+import java.io.FileWriter;
+import java.io.BufferedWriter;
+import java.io.IOException;
+
 public class TablaHash {
     private NodeHash[] tabla;
     private int capacidad;
@@ -78,8 +83,53 @@ public class TablaHash {
         System.out.println("Registro no encontrado."); // Diagnóstico
         return null; // No encontrado
     }
+    public void actualizarArchivoCSV() {
+    String nombreArchivo = "Booking_hotel - estado.csv"; // Nombre directo del archivo
+    File archivo = new File(nombreArchivo);
+
+    try (BufferedWriter bw = new BufferedWriter(new FileWriter(archivo, false))) { // false para sobrescribir el archivo
+        // bw.write("num_hab,primerNombre,apellido,email,genero,celular,llegada\n");
+        
+        for (int i = 0; i < tabla.length; i++) {
+            NodeHash nodo = tabla[i];
+            while (nodo != null) {
+                EstadoNode registroActual = nodo.cabeza;
+                while (registroActual != null) {
+                    bw.write(registroActual.registro.toString());
+                    bw.newLine();
+                    registroActual = registroActual.siguiente;
+                }
+                nodo = nodo.siguiente;
+            }
+        }
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+    
+    }
+    public boolean eliminar(String primerNombre, String apellido) {
+    String clave = (primerNombre.trim().toLowerCase() + " " + apellido.trim().toLowerCase());
+    int indice = hash(clave);
+    NodeHash nodoActual = tabla[indice];
+    NodeHash nodoPrevio = null;
+    
+    while (nodoActual != null) {
+        if (nodoActual.clave.equals(clave)) {
+            if (nodoPrevio == null) { // Es el primer nodo en la lista para este índice
+                tabla[indice] = nodoActual.siguiente;
+            } else {
+                nodoPrevio.siguiente = nodoActual.siguiente; // Bypass del nodoActual
+            }
+            return true; // Registro eliminado
+        }
+        nodoPrevio = nodoActual;
+        nodoActual = nodoActual.siguiente;
+    }
+    return false; // No se encontró el registro para eliminar
+}
 
 }
+
     
 
 

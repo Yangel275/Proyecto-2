@@ -36,7 +36,7 @@ public class GestorCSV {
                 );
                 
                 miTabla.insertar(registro);
-                miTabla.imprimirTablaHash();
+               // miTabla.imprimirTablaHash();
 
             }
             br.close();
@@ -44,12 +44,20 @@ public class GestorCSV {
             e.printStackTrace();
         }
         // Ejemplo de cómo realizar una búsqueda
-        Estado busqueda = miTabla.buscar("eleen", "harkess");
+        Estado busqueda = miTabla.buscar("Tybie", "Borel");
         if (busqueda != null) {
             System.out.println("Número de habitación encontrado: " + busqueda.numHab);
         } else {
             System.out.println("Registro no encontrado.");
         }
-    
+        //Ejemplo de cómo eliminar
+        Boolean eliminar = miTabla.eliminar("jay", "redler");
+        if (eliminar != false){
+            System.out.println("Registro eliminado de la tabla Hash");
+            //miTabla.imprimirTablaHash();
+            miTabla.actualizarArchivoCSV();
+        }else{
+            System.out.println("Registro no encontrado");
+        }
     }
 }

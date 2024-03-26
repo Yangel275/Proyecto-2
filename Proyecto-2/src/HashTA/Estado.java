@@ -83,7 +83,12 @@ public class Estado {
     }
     @Override
     public String toString() {
-    return "[numHab=" + numHab + ", nombre=" + primerNombre + " " + apellido + "]";
+        return numHab + "," +
+               primerNombre + "," +
+               apellido + "," +
+               email + "," +
+               genero + "," +
+               celular + "," +
+               llegada;
     }
 }
-    
