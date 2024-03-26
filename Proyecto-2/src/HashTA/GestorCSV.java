@@ -14,38 +14,42 @@ import java.io.IOException;
 
 public class GestorCSV {
     public static void main(String[] args) {
-        TablaHash miTabla = new TablaHash(500); // Asumiendo 500 como una capacidad adecuada
+        TablaHash miTabla = new TablaHash(300);
         String linea;
 
         try {
             BufferedReader br = new BufferedReader(new FileReader("Booking_hotel - estado.csv"));
-            // Saltarse el encabezado si existe
-            br.readLine();
+            br.readLine(); // Saltarse el encabezado si es necesario
             while ((linea = br.readLine()) != null) {
                 String[] datos = linea.split(",");
-                // Crear un nuevo registro con todos los datos
-                Estado estado = new Estado(
-                    Integer.parseInt(datos[0]), // num_hab
-                    datos[1], // primer_nombre
-                    datos[2], // apellido
-                    datos[3], // email
-                    datos[4], // genero
-                    datos[5], // celular
-                    datos[6]  // llegada
+                // Usa un valor predeterminado si el campo está vacío o no es numérico
+                String numHab = datos[0].trim().isEmpty() ? "No registrado" : datos[0].trim();
+
+                Estado registro = new Estado(
+                    datos[0].trim(),
+                    datos[1].trim().toLowerCase(),
+                    datos[2].trim().toLowerCase(),
+                    datos[3].trim().toLowerCase(),
+                    datos[4].trim().toLowerCase(),
+                    datos[5].trim(),
+                    datos[6].trim()
                 );
-                miTabla.insertar(estado);
+                
+                miTabla.insertar(registro);
+                miTabla.imprimirTablaHash();
+
             }
             br.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         // Ejemplo de cómo realizar una búsqueda
-        Integer numHab = miTabla.buscar("NombreBuscado", "ApellidoBuscado");
-        if (numHab != null) {
-            System.out.println("Número de habitación encontrado: " + numHab);
+        Estado busqueda = miTabla.buscar("eleen", "harkess");
+        if (busqueda != null) {
+            System.out.println("Número de habitación encontrado: " + busqueda.numHab);
         } else {
             System.out.println("Registro no encontrado.");
         }
+    
     }
 }
