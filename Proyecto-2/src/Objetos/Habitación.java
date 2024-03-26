@@ -18,7 +18,7 @@ public class Habitación {
     private Histórico pFirst;
     private Habitación ant_hab;
     private Habitación sig_hab;
-    
+    private String Escritura;
 
     public Habitación(int numHab, String tipoHab, int piso) {
         this.numHab = numHab;
@@ -28,6 +28,7 @@ public class Habitación {
         this.pFirst = null;
         this.ant_hab = null;
         this.sig_hab = null;
+        this.Escritura = null;
     }
     
     //Agregar nueva información al historial de la habitación
@@ -100,10 +101,13 @@ public class Habitación {
     }
     
     public void Imprimir(Histórico historial){
-        System.out.println(historial.toImpimir());
+
+        this.setEscritura(this.getEscritura() + historial.toImpimir());
         if(historial.getNext() != null){
             this.Imprimir(historial.getNext());
         }
+        
+        
     }
     
     
@@ -174,5 +178,19 @@ public class Habitación {
     public Habitación getSig_hab() {
         return sig_hab;
     }    
+
+    /**
+     * @return the Escritura
+     */
+    public String getEscritura() {
+        return Escritura;
+    }
+
+    /**
+     * @param Escritura the Escritura to set
+     */
+    public void setEscritura(String Escritura) {
+        this.Escritura = Escritura;
+    }
     
 }

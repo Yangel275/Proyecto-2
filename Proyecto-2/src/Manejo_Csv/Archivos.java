@@ -21,6 +21,16 @@ import java.util.Scanner;
  */
 public class Archivos {
 
+    public static void main(String[] args) {
+        Archivos arbol = new Archivos();
+        arbol.Down_Hab();
+        arbol.Down_his();
+        arbol.Down_res();
+        
+        arbol.Up_Hab();
+        arbol.Up_his();
+        arbol.Up_res();
+    }
     /*Descargar Histórico y posicionar cada objeto en relación a cada habitación 
     * de manera que el nodo inicial sea la última persona
      Se dará forma como una Lista enlazada
@@ -68,7 +78,7 @@ public class Archivos {
         nueva = orden.men_may_his();
 
         Archivos ajuste = new Archivos();
-        ajuste.Down_Hab();
+       
         
         
         Habitaciones hab = new Habitaciones();
@@ -77,24 +87,6 @@ public class Archivos {
         for(int i =0 ; i < nueva.length; i++ ){
             hab.disparador_agg_his(nueva[i]);
         }
-        
-        
-        
-        for(int i = hab.getMenor() ; i <= hab.getMayor(); i++ ){
-            Habitación esta = hab.disparador_busqueda(i);
-            System.out.println( "Habitación: "+esta.getNumHab()+"\n"); 
-            System.out.println("\n"+esta.getTamaño()+"\n");
-            if(esta.getpFirst()== null){
-                System.out.println("No tiene");
-                System.out.println("");
-                System.out.println("");
-            }else{
-                esta.Imprimir(esta.getpFirst());
-                System.out.println("");
-                System.out.println("");
-            }
-            
-        }
     }
 
     //Guardar Histórico Lista enlazada
@@ -102,7 +94,7 @@ public class Archivos {
 
         Habitaciones arbol = new Habitaciones();
 
-        File f = new File("./Booking_hotel - habitaciones.csv");
+        File f = new File("./Booking_hotel - Histórico.csv");
         try (FileWriter fw = new FileWriter(f);) {
             fw.write("num_hab,tipo_hab,piso\n");
             for (int i = arbol.getMenor(); i <= arbol.getMayor(); i++) {
@@ -198,7 +190,7 @@ public class Archivos {
     }
 
     //Descargar Habitaciones y enlazarlo en forma de un ABB
-    public void Down_Hab() {
+    public void Down_Hab(){
         Habitación[] nueva = null;
         Habitación[] vieja = null;
         Habitación habitacion;
@@ -206,13 +198,14 @@ public class Archivos {
         int indice = 0;
         int inicio = 0;
 
+        
+        
         try (Scanner scFile = new Scanner(new File("./Booking_hotel - habitaciones.csv"))) {
-
             while (scFile.hasNextLine()) {
                 if (inicio == 0) {
                     new_hab = scFile.nextLine().split(",");
                     inicio = 1;
-                } else {
+                }else{
                     new_hab = scFile.nextLine().split(",");
                     indice += 1;
                     habitacion = new Habitación(Integer.parseInt(new_hab[0]), new_hab[1], Integer.parseInt(new_hab[2]));

@@ -34,7 +34,7 @@ public class Histórico {
     }
     
     public String toImpimir(){
-        return this.getCédula()+" "+this.getNombre()+" " +this.getApellido()+" " +this.getEmail()+" " +this.getGenero()+" " +this.getLlegada()+" " +Integer.toString(this.getnum_hab());
+        return this.getCédula()+" "+this.getNombre()+" " +this.getApellido()+" " +this.getEmail()+" " +this.getGenero()+" " +this.getLlegada()+" " +Integer.toString(this.getnum_hab())+"\n";
     }
     
     public String toCSV(){
@@ -44,7 +44,7 @@ public class Histórico {
     public int Date_Str_int(){
         String[] numero1 = this.getLlegada().split("\\/");
         int sum2 = Integer.parseInt(numero1[1]);
-        int ci = Integer.parseInt(numero1[0])*sum2 + Integer.parseInt(numero1[1])*sum2*sum2 + Integer.parseInt(numero1[2])*sum2;
+        int ci = Integer.parseInt(numero1[0]) + Integer.parseInt(numero1[1])*100 + Integer.parseInt(numero1[2])*10000;
         return ci;
     }
     
