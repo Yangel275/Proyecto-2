@@ -6,8 +6,9 @@ package Interfaz;
 
 /**
  *
- * @author yangel
+ * @author yangel/orozco/vivolo
  */
+import HashTA.*;
 public class Menú extends javax.swing.JFrame {
 
     /**
@@ -70,7 +71,13 @@ public class Menú extends javax.swing.JFrame {
             }
         });
 
-        jButton5.setText("jButton5");
+        jButton5.setText("Check-out");
+        jButton5.setActionCommand("Check-out");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -163,10 +170,18 @@ public class Menú extends javax.swing.JFrame {
         this.setVisible(false);   
     }//GEN-LAST:event_CheckInBActionPerformed
 
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        Check_out ventata = new Check_out();
+        ventata.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton5ActionPerformed
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+        GestorCSV.cargarDatos();
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -189,7 +204,6 @@ public class Menú extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Menú.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

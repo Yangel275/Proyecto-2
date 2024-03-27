@@ -3,28 +3,38 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package Interfaz;
-
-import Objetos.hastTable;
-
+import HashTA.*;
+import javax.swing.JOptionPane;
+        
 /**
  *
- * @author yangel
+ * @author yangel/OROZCO/VIVOLO
  */
 public class Búsqueda extends javax.swing.JFrame {
-
+    private TablaHash miTabla;
     /**
      * Creates new form Búsqueda
      */
-    
-  private hastTable data;  // Instance of your hash table
-  private TableModel dataTable;  // Your JTable component
+    //@TablaHash Tabla
     public Búsqueda() {
         this.setSize(507, 309);
+        this.miTabla = GestorCSV.getTablaHash();
         this.setTitle("Busqueda de Clientes");
         this.setLocationRelativeTo(null);
-        
-        initComponents();
+    
+    initComponents();
+    
+    BBoton.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            buscarActionPerformed(evt);
+        }
+    });
+    }   
+    public void setTablaHash(TablaHash tabla) {
+        this.miTabla = tabla;
     }
+
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -38,11 +48,10 @@ public class Búsqueda extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         BTable = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        TableModel = new javax.swing.JTable();
         BBoton = new javax.swing.JButton();
         Last_nameF = new javax.swing.JTextField();
         L_nameF = new javax.swing.JTextField();
@@ -50,6 +59,7 @@ public class Búsqueda extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         exitB = new javax.swing.JButton();
         VolverB = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
 
         BTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -63,6 +73,8 @@ public class Búsqueda extends javax.swing.JFrame {
 
         jLabel1.setText("Busqueda de Clientes");
 
+        jLabel5.setText("jLabel5");
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -75,25 +87,26 @@ public class Búsqueda extends javax.swing.JFrame {
         jLabel2.setText("Busqueda de Clientes");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 30, 130, -1));
 
-        TableModel.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane2.setViewportView(TableModel);
-
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, -1, 140));
-
         BBoton.setText("Buscar");
+        BBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BBotonActionPerformed(evt);
+            }
+        });
         getContentPane().add(BBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 80, -1, -1));
 
-        Last_nameF.setText("Apellido");
+        Last_nameF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Last_nameFActionPerformed(evt);
+            }
+        });
         getContentPane().add(Last_nameF, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 80, 90, -1));
 
-        L_nameF.setText("Nombre");
+        L_nameF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                L_nameFActionPerformed(evt);
+            }
+        });
         getContentPane().add(L_nameF, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 80, 100, -1));
 
         jLabel3.setText("Apellido:");
@@ -118,6 +131,9 @@ public class Búsqueda extends javax.swing.JFrame {
         });
         getContentPane().add(VolverB, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 280, -1, -1));
 
+        jLabel6.setBackground(new java.awt.Color(255, 255, 255));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 140, 150, 50));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -133,56 +149,49 @@ public class Búsqueda extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_VolverBActionPerformed
 
+    private void Last_nameFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Last_nameFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Last_nameFActionPerformed
+
+    private void L_nameFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_L_nameFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_L_nameFActionPerformed
+
+    private void BBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BBotonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BBotonActionPerformed
+    private void buscarActionPerformed(java.awt.event.ActionEvent evt) { 
+    String nombre = L_nameF.getText().trim().toLowerCase();
+    String apellido = Last_nameF.getText().trim().toLowerCase();
+    this.miTabla = GestorCSV.getTablaHash();
+ 
+    Estado resultado = miTabla.buscar(nombre, apellido);
+    miTabla.imprimirTablaHash();
+    if (resultado != null) {
+        JOptionPane.showMessageDialog(this, "Número de habitación encontrado: " + resultado.numHab);
+    } else {
+        JOptionPane.showMessageDialog(this, "Registro no encontrado.");
+    }
+}
+
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Búsqueda.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Búsqueda.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Búsqueda.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Búsqueda.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Búsqueda().setVisible(true);
-            }
-        });
-    }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BBoton;
     private javax.swing.JTable BTable;
     private javax.swing.JTextField L_nameF;
     private javax.swing.JTextField Last_nameF;
-    private javax.swing.JTable TableModel;
     private javax.swing.JButton VolverB;
     private javax.swing.JButton exitB;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
 }

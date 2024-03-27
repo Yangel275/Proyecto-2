@@ -9,7 +9,7 @@ package HashTA;
  * @author gabrielorozco
  */
 public class Estado {
-    String numHab;
+    public String numHab;
     String primerNombre;
     String apellido;
     String email;

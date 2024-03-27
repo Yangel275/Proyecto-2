@@ -8,13 +8,14 @@ package HashTA;
  *
  * @author gabrielorozco
  */
+import Interfaz.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
 public class GestorCSV {
-    public static void main(String[] args) {
-        TablaHash miTabla = new TablaHash(300);
+    private static TablaHash miTabla = new TablaHash(300);
+    public static void cargarDatos() {
         String linea;
 
         try {
@@ -37,27 +38,18 @@ public class GestorCSV {
                 
                 miTabla.insertar(registro);
                // miTabla.imprimirTablaHash();
+               
 
             }
             br.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        // Ejemplo de cómo realizar una búsqueda
-        Estado busqueda = miTabla.buscar("Tybie", "Borel");
-        if (busqueda != null) {
-            System.out.println("Número de habitación encontrado: " + busqueda.numHab);
-        } else {
-            System.out.println("Registro no encontrado.");
-        }
-        //Ejemplo de cómo eliminar
-        Boolean eliminar = miTabla.eliminar("jay", "redler");
-        if (eliminar != false){
-            System.out.println("Registro eliminado de la tabla Hash");
-            //miTabla.imprimirTablaHash();
-            miTabla.actualizarArchivoCSV();
-        }else{
-            System.out.println("Registro no encontrado");
-        }
+        
+        
+    }
+    // Método estático para obtener la instancia desde cualquier lugar
+    public static TablaHash getTablaHash() {
+        return miTabla;
     }
 }
